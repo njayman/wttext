@@ -1,0 +1,16 @@
+.wisharea {
+  resize: none;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  font-weight: 400;
+  background: black;
+  margin: 0 auto;
+  caret-color: #6d20e8;
+}
+
+.wisharea:focus {
+  background: #070707;
+}

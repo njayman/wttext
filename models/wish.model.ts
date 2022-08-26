@@ -1,22 +1,35 @@
-import { Schema, model, Types } from 'mongoose';
+import { Schema, model, Types, models } from "mongoose";
 
 export interface IWish {
-    content: string,
-    user?: Types.ObjectId
+  content: string;
+  user?: Types.ObjectId;
+  wishId: string;
+  expireAt: Date;
 }
 
-const WishSchema: Schema = new Schema<IWish>({
+const WishSchema: Schema = new Schema<IWish>(
+  {
     content: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
+    },
+    wishId: {
+      type: String,
+      required: true,
+      unique: true,
     },
     user: {
-        type: Schema.Types.ObjectId,
-    }
-}, {
-    timestamps: true
-})
+      type: Schema.Types.ObjectId,
+    },
+    expireAt: { type: Date, default: Date.now, expires: 604800 },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const WishModel = model<IWish>('Wish', WishSchema);
+// WishSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 })
+
+const WishModel = models["Wish"] || model<IWish>("Wish", WishSchema);
 
 export default WishModel;

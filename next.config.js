@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    swcMinify: true,
-    env: {
-        MONGODB_URL: ""
-    }
+    swcMinify: true
 }
 
 module.exports = nextConfig

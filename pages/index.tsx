@@ -1,10 +1,12 @@
 import type { NextPage } from "next";
-import Head from "next/head";
+import { useRouter } from 'next/router'
 import { FormEvent, useState } from "react";
+import TextArea from "../Components/TextArea";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
     const [message, setMessage] = useState<string>("");
+    const router = useRouter();
 
     const handleChange = (e: FormEvent<HTMLTextAreaElement>) => {
         setMessage(e.currentTarget.value);
@@ -13,27 +15,24 @@ const Home: NextPage = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/makewish')
+            const response = await fetch("/api/makewish", {
+                method: "POST",
+                body: JSON.stringify({ content: message }),
+            });
             const data = await response.json();
-            console.log(data);
+            if (data.wishId) {
+                router.push(`/${data.wishId}`)
+            }
         } catch (error: unknown) {
             if (error) {
-                console.log('An error occured');
+                console.log("An error occured");
             }
         }
     };
     return (
-        <div className={styles.page}>
-            <Head>
-                <title>What the Text!</title>
-                <meta name="description" content="What the text web app for fun!" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <h1 className={styles.heading}>What the text</h1>
-            <span className={styles.subtitle}>Let your friends type out the words of your mind!</span>
+        <>
             <form className={styles.wishform} onSubmit={handleSubmit}>
-                <textarea
-                    className={styles.wisharea}
+                <TextArea
                     onChange={handleChange}
                     value={message}
                     rows={8}
@@ -41,8 +40,9 @@ const Home: NextPage = () => {
                     autoFocus
                     spellCheck={false}
                 />
+                <button className={styles.wishbutton} type="submit">Generate</button>
             </form>
-        </div>
+        </>
     );
 };
 
