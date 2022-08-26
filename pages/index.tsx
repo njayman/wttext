@@ -1,12 +1,14 @@
 import type { NextPage } from "next";
 import { useRouter } from 'next/router'
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import TextArea from "../Components/TextArea";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
     const [message, setMessage] = useState<string>("");
     const router = useRouter();
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    // console.log(buttonRef.current?.offsetHeight)
 
     const handleChange = (e: FormEvent<HTMLTextAreaElement>) => {
         setMessage(e.currentTarget.value);
@@ -39,8 +41,10 @@ const Home: NextPage = () => {
                     placeholder="Type your message here . . . "
                     autoFocus
                     spellCheck={false}
+                    maxLength={300}
                 />
-                <button className={styles.wishbutton} type="submit">Generate</button>
+                <span className={styles.count} style={{ bottom: `${String(buttonRef.current?.offsetHeight || 35)} px` }}>{message.length}/300</span>
+                <button ref={buttonRef} className={styles.wishbutton} type="submit">Generate</button>
             </form>
         </>
     );
