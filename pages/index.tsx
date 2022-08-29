@@ -9,7 +9,6 @@ const Home: NextPage = () => {
     const router = useRouter();
     const buttonRef = useRef<HTMLButtonElement>(null);
     // console.log(buttonRef.current?.offsetHeight)
-
     const handleChange = (e: FormEvent<HTMLTextAreaElement>) => {
         setMessage(e.currentTarget.value);
     };
@@ -34,6 +33,7 @@ const Home: NextPage = () => {
     return (
         <>
             <form className={styles.wishform} onSubmit={handleSubmit}>
+
                 <TextArea
                     onChange={handleChange}
                     value={message}
@@ -43,6 +43,7 @@ const Home: NextPage = () => {
                     spellCheck={false}
                     maxLength={300}
                 />
+
                 <span className={styles.count} style={{ bottom: `${String(buttonRef.current?.offsetHeight || 35)} px` }}>{message.length}/300</span>
                 <button ref={buttonRef} className={styles.wishbutton} type="submit">Generate</button>
             </form>

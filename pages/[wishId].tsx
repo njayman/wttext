@@ -1,11 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Link from 'next/link';
 import WishModel from "../models/wish.model";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from '../styles/Wish.module.css';
 import connectDB from "../lib/dbConnect";
 import TextArea from "../Components/TextArea";
 import CopyButton from "../Components/CopyButton";
+import confetti from "canvas-confetti";
 
 interface Props {
     message: string;
@@ -20,6 +21,12 @@ const Wish: NextPage<Props> = (props) => {
             setTypeWish((prevTypeWish) => prevTypeWish + wish[typeWish.length]);
         }
     }
+
+    useEffect(() => {
+        if (typeWish.length === wish.length)
+            confetti()
+    }, [typeWish, wish])
+
     return (
         <>
             <div className={styles.wishform}>
