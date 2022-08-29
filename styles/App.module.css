@@ -11,11 +11,14 @@
   font-weight: 700;
   font-size: 50px;
   display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .subtitle {
   font-weight: 200;
   font-size: 20px;
+    padding: 0 50px;
 }
 
 .creator {
