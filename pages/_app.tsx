@@ -11,6 +11,25 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <title>What the Text!</title>
                 <meta name="description" content="What the text web app for fun!" />
                 <link rel="icon" href="/favicon.ico" />
+                {/* <!-- Open Graph / Facebook --> */}
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://wttext.vercel.app/" />
+                <meta property="og:title" content="What the Text!" />
+                <meta
+                    property="og:description"
+                    content="Let your friends type out the words of your mind!"
+                />
+                <meta property="og:image" content="" />
+
+                {/* <!-- Twitter --> */}
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content="https://wttext.vercel.app/" />
+                <meta property="twitter:title" content="What the Text!" />
+                <meta
+                    property="twitter:description"
+                    content="Let your friends type out the words of your mind!"
+                />
+                <meta property="twitter:image" content="https://i.postimg.cc/T3698dZB/what-the-text.png" />
             </Head>
             <h1 className={styles.heading}>
                 {["WHAT", "THE", "TEXT"].map((words, key) => {
