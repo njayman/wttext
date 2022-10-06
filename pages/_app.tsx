@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     property="og:description"
                     content="Let your friends type out the words of your mind!"
                 />
-                <meta property="og:image" content="" />
+                <meta property="og:image" content="/what-the-text.png" />
 
                 {/* <!-- Twitter --> */}
                 <meta property="twitter:card" content="summary_large_image" />
@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     property="twitter:description"
                     content="Let your friends type out the words of your mind!"
                 />
-                <meta property="twitter:image" content="https://i.postimg.cc/T3698dZB/what-the-text.png" />
+                <meta property="twitter:image" content="/what-the-text.png" />
             </Head>
             <h1 className={styles.heading}>
                 {["WHAT", "THE", "TEXT"].map((words, key) => {
