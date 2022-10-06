@@ -40,6 +40,10 @@
   padding: 3px;
 }
 
+.author {
+    color: #6d20e8;
+}
+
 @keyframes shake {
   0% {
     margin-left: 0rem;

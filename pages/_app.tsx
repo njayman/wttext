@@ -3,6 +3,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import styles from "../styles/App.module.css";
 import Link from "next/link";
+/* import History from "../Components/History"; */
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
@@ -48,10 +49,11 @@ function MyApp({ Component, pageProps }: AppProps) {
                 Let your friends type out the words of your mind!
             </span>
             <Component {...pageProps} />
+            {/* <History /> */}
             <span className={styles.creator}>
                 Created by{" "}
                 <Link href="https://github.com/njayman">
-                    <a target="_blank" rel="noopener noreferrer">
+                    <a className={styles.author} target="_blank" rel="noopener noreferrer">
                         Najish Mahmud
                     </a>
                 </Link>
