@@ -8,6 +8,7 @@ import styles from "../styles/Home.module.css";
 const Home: NextPage = () => {
     /* const [history, setHistory] = useWishHistory(); */
     const [message, setMessage] = useState<string>("");
+    const [errorMessage, setErrorMessage] = useState<string>("");
     const router = useRouter();
 
     // console.log(buttonRef.current?.offsetHeight)
@@ -35,7 +36,7 @@ const Home: NextPage = () => {
             }
         } catch (error: unknown) {
             if (error) {
-                console.log("An error occured");
+                setErrorMessage("An error occured");
             }
             setloading(false);
         } finally {
@@ -58,6 +59,7 @@ const Home: NextPage = () => {
 
                 <span className={styles.count} style={{ bottom: `${String(buttonRef.current?.offsetHeight || 35)} px` }}>{message.length}/300</span>
                 <button disabled={loading} ref={buttonRef} className={styles.wishbutton} type="submit">{loading ? ". . ." : "Generate"}</button>
+                {errorMessage ? <p>{errorMessage}</p> : ""}
             </form>
         </>
     );
